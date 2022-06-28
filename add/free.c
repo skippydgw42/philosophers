@@ -6,21 +6,22 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:10:05 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/06/27 17:11:29 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:05:33 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inclds/philo.h"
 
-void	ft_free_data(t_data *data)
+void	ft_free_all(t_philo *philo)
 {
 	t_philo	*ptr;
 
-	while (data->lst)
+	while (philo)
 	{
-		ptr = data->lst;
-		data->lst = data->lst->next;
+		ptr = philo;
+		philo = philo->next;
+		free(ptr->data);
+		free(ptr->fork);
 		free(ptr);
 	}
-	free(data);
 }

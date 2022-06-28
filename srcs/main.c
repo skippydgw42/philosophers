@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:30:01 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/06/27 19:31:45 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/06/28 15:54:53 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,20 @@
 
 int	main(int ac, char **av)
 {
-	t_data	*data;
+	t_philo	*philo;
+	// t_philo	*ptr;
 
 	ft_parsing(ac, av);
-	data = malloc(sizeof(t_data));
-	if (!data)
+	philo = malloc(sizeof(t_philo));
+	if (!philo)
 		return (0);
-	ft_initstruct(data, av);
-	ft_initphilos(data);
-
-	//faire tourner la routine
-	while (data->lst)
+	philo = ft_initphilos(av);
+	ft_create(philo);
+	while (philo->alive)
 	{
-		pthread_detach(data->lst->p);
-		data->lst = data->lst->next;
+		pthread_join(philo->p, NULL);
 	}
-	// ft_destroy(data);
-	// ft_free_data(data);
+	ft_destroy(philo);
+	ft_free_all(philo);
 	return (0);
 }

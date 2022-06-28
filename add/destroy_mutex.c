@@ -6,17 +6,17 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:08:32 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/06/27 19:29:16 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:47:17 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inclds/philo.h"
 
-void	ft_destroy(t_data *data)
+void	ft_destroy(t_philo *philo)
 {
 	t_philo	*ptr;
 
-	ptr = data->lst;
+	ptr = philo;
 	while (ptr)
 	{
 		pthread_mutex_destroy(&ptr->fork->mutex);
