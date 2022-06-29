@@ -11,6 +11,7 @@ typedef struct s_data
 {
 	struct timeval	c_time;
 	int				nphilo;
+	int				alive;
 	int				time_eat;
 	int				time_sleep;
 	int				time_die;
@@ -25,15 +26,15 @@ typedef struct	s_fork
 
 typedef struct s_philo
 {
-	pthread_t		p;
-	int				name;
-	int				alive;
-	int				time;
-	int				start_time;
-	struct s_data	*data;
-	struct s_fork	*fork;
-	struct s_philo	*next;
-	struct s_philo	*prev;
+	pthread_t			p;
+	int					name;
+	long				time;
+	long				start_time;
+	long				finish_time;
+	struct s_data		*data;
+	struct s_fork		*fork;
+	struct s_philo		*next;
+	struct s_philo		*prev;
 }	t_philo;
 
 //===========ADD============//
@@ -44,10 +45,11 @@ void	ft_destroy(t_philo *philo);
 void	ft_free_all(t_philo *philo);
 
 //===========INIT============//
-int		ft_initdata(t_philo *philo, char **av);
+t_data	*ft_initdata(char **av);
 t_philo	*ft_initphilos(char **av);
 void	ft_setprev(t_philo *philo);
 int		ft_create(t_philo *philo);
+void	ft_joindata(t_philo *philo, t_data *data);
 
 //===========SRCS============//
 void	*routine(void *philo);

@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:10:05 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/06/28 14:05:33 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/06/29 17:16:49 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 
 void	ft_free_all(t_philo *philo)
 {
+	int		i;
+	int		n;
 	t_philo	*ptr;
 
-	while (philo)
+	i = 0;
+	n = philo->data->nphilo;
+	free(philo->data);
+	while (i < n)
 	{
 		ptr = philo;
 		philo = philo->next;
-		free(ptr->data);
 		free(ptr->fork);
 		free(ptr);
+		i++;
 	}
 }
