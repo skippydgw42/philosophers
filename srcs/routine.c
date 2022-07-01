@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:58:25 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/06/29 17:08:46 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:28:26 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ft_take_fork(t_philo *philo)
 			if (block == 0)
 				pthread_mutex_unlock(&philo->fork->mutex);
 		}
-		else if (block == 1)
+		else if (block == 1 && philo->next != philo)
 		{
 			block = ft_block_fork(philo->next->fork, block);
 			if (block == 0)
@@ -124,8 +124,8 @@ void	*routine(void *philo)
 		ft_eat(ptr);
 		ft_sleep(ptr);
 	}
-	usleep(10);
+	usleep(100);
 	if (ptr->finish_time != 0)
-		printf("%ld %d is dead\n", ft_gettime(), ptr->name);
+		printf("%ld %d is dead\n", ptr->finish_time, ptr->name);
 	return (NULL);
 }
