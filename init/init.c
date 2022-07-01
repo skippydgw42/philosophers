@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:47:27 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/06/29 17:15:43 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/07/01 15:14:42 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_data	*ft_initdata(char **av)
 	data->time_eat = ft_atoi(av[3]);
 	data->time_sleep = ft_atoi(av[4]);
 	data->alive = 1;
+	data->sated = 0;
 	if (av[5])
 		data->nrounds = ft_atoi(av[5]);
 	else

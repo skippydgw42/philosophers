@@ -15,6 +15,7 @@ typedef struct s_data
 	int				time_eat;
 	int				time_sleep;
 	int				time_die;
+	int				sated;
 	int				nrounds;
 }	t_data;
 
