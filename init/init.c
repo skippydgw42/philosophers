@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:47:27 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/07/01 15:14:42 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:38:34 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_data	*ft_initdata(char **av)
 {
 	t_data	*data;
-	
+
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (NULL);
@@ -29,6 +29,7 @@ t_data	*ft_initdata(char **av)
 		data->nrounds = ft_atoi(av[5]);
 	else
 		data->nrounds = -1;
+	pthread_mutex_init(&data->dying, NULL);
 	return (data);
 }
 
@@ -61,6 +62,7 @@ t_philo	*ft_initnew(int i)
 	new->fork->state = 1;
 	new->time = 0;
 	new->finish_time = 0;
+	new->start_time = 0;
 	pthread_mutex_init(&new->fork->mutex, NULL);
 	return (new);
 }

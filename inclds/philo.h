@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/08 21:54:03 by mdegraeu          #+#    #+#             */
+/*   Updated: 2022/07/12 17:52:50 by mdegraeu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -7,19 +19,20 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
+# define INT_MAX 2147483647
 typedef struct s_data
 {
-	struct timeval	c_time;
+	pthread_mutex_t	dying;
 	int				nphilo;
 	int				alive;
-	int				time_eat;
-	int				time_sleep;
-	int				time_die;
+	long			time_eat;
+	long			time_sleep;
+	long			time_die;
 	int				sated;
 	int				nrounds;
 }	t_data;
 
-typedef struct	s_fork
+typedef struct s_fork
 {
 	pthread_mutex_t	mutex;
 	int				state;
@@ -27,6 +40,7 @@ typedef struct	s_fork
 
 typedef struct s_philo
 {
+	struct timeval		c_time;
 	pthread_t			p;
 	int					name;
 	long				time;
@@ -41,9 +55,12 @@ typedef struct s_philo
 //===========ADD============//
 int		ft_stderr(char *str);
 int		ft_atoi(const char *str);
-int		ft_parsing(int ac, char **av);
 void	ft_destroy(t_philo *philo);
 void	ft_free_all(t_philo *philo);
+void	ft_usleep(t_philo *philo, long value);
+
+//=========PARSING==========//
+int		ft_parsing(int ac, char **av);
 
 //===========INIT============//
 t_data	*ft_initdata(char **av);
@@ -54,5 +71,14 @@ void	ft_joindata(t_philo *philo, t_data *data);
 
 //===========SRCS============//
 void	*routine(void *philo);
+void	ft_thinking(t_philo *philo);
+void	ft_eat(t_philo *philo);
+void	ft_sleep(t_philo *philo);
+int		ft_isalive(t_philo *philo);
+long	ft_gettime(t_philo *philo);
+
+int		ft_take_fork(t_philo *philo);
+//========spare function=========//
+int		take_fork(t_philo *philo);
 
 #endif

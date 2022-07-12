@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_mutex.c                                    :+:      :+:    :+:   */
+/*   is_alive.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 17:08:32 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/07/11 16:54:37 by mdegraeu         ###   ########.fr       */
+/*   Created: 2022/07/08 22:09:52 by mdegraeu          #+#    #+#             */
+/*   Updated: 2022/07/12 14:04:35 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inclds/philo.h"
 
-void	ft_destroy(t_philo *philo)
+int	ft_isalive(t_philo *philo)
 {
-	int		i;
-	t_philo	*ptr;
+	long	isalive;
 
-	i = 0;
-	ptr = philo;
-	while (i < ptr->data->nphilo)
+	isalive = 0;
+	if (philo->data->alive == 1)
 	{
-		pthread_mutex_destroy(&ptr->fork->mutex);
-		ptr = ptr->next;
-		i++;
+		isalive = ft_gettime(philo) - philo->time;
+		if (isalive > philo->data->time_die)
+		{
+			if (pthread_mutex_lock(&philo->data->dying) == 0)
+			{
+				philo->finish_time = ft_gettime(philo);
+				philo->data->alive = 0;
+				return (0);
+			}
+		}
 	}
+	else
+		return (0);
+	return (1);
 }

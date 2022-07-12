@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_mutex.c                                    :+:      :+:    :+:   */
+/*   think.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 17:08:32 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/07/11 16:54:37 by mdegraeu         ###   ########.fr       */
+/*   Created: 2022/07/11 17:40:05 by mdegraeu          #+#    #+#             */
+/*   Updated: 2022/07/11 17:58:57 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inclds/philo.h"
 
-void	ft_destroy(t_philo *philo)
+void	ft_thinking(t_philo *philo)
 {
-	int		i;
-	t_philo	*ptr;
-
-	i = 0;
-	ptr = philo;
-	while (i < ptr->data->nphilo)
-	{
-		pthread_mutex_destroy(&ptr->fork->mutex);
-		ptr = ptr->next;
-		i++;
-	}
+	if (ft_isalive(philo) && philo->data->nrounds != 0)
+		printf("%ld %d is thinking\n", ft_gettime(philo), philo->name);
 }

@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   sleep.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 14:57:25 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/06/27 18:07:59 by mdegraeu         ###   ########.fr       */
+/*   Created: 2022/07/08 22:10:41 by mdegraeu          #+#    #+#             */
+/*   Updated: 2022/07/12 17:13:23 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inclds/philo.h"
 
-int	ft_parsing(int ac, char **av)
+void	ft_sleep(t_philo *philo)
 {
-	(void)av;
-	if (ac < 5 || ac > 6)
-		return (ft_stderr("Bad Args Count\n"));
-	return (1);
+	if (ft_isalive(philo) && philo->data->nrounds != 0)
+	{
+		printf("%ld %d is sleeping\n", ft_gettime(philo), philo->name);
+		ft_usleep(philo, philo->data->time_sleep);
+	}
 }

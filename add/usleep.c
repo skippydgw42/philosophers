@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_mutex.c                                    :+:      :+:    :+:   */
+/*   usleep.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 17:08:32 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/07/11 16:54:37 by mdegraeu         ###   ########.fr       */
+/*   Created: 2022/07/08 21:20:34 by mdegraeu          #+#    #+#             */
+/*   Updated: 2022/07/12 17:19:59 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inclds/philo.h"
 
-void	ft_destroy(t_philo *philo)
+void	ft_usleep(t_philo *philo, long value)
 {
-	int		i;
-	t_philo	*ptr;
+	long	time;
 
-	i = 0;
-	ptr = philo;
-	while (i < ptr->data->nphilo)
-	{
-		pthread_mutex_destroy(&ptr->fork->mutex);
-		ptr = ptr->next;
-		i++;
-	}
+	time = ft_gettime(philo);
+	while (ft_gettime(philo) - time < value)
+		usleep(100);
 }
