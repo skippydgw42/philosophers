@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:10:41 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/07/18 11:45:48 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/07/18 14:03:59 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_sleep(t_philo *philo)
 {
-		printf("%ld %d is sleeping\n", ft_gettime(philo), philo->name);
-		ft_usleep(philo, philo->data->time_sleep);
+	printf("%ld %d is sleeping\n", ft_gettime(philo), philo->name);
+	ft_usleep(philo, philo->data->time_sleep);
 }

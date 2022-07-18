@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:58:25 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/07/18 12:35:40 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/07/18 14:03:47 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ long	ft_gettime(t_philo *philo)
 	return (time - philo->start_time);
 }
 
-int	ft_end(t_philo *philo)
+void	ft_end(t_philo *philo)
 {
 	int	n;
 
@@ -40,25 +40,20 @@ int	ft_end(t_philo *philo)
 		ft_usleep(philo, 100);
 		printf("Rounds passed\n");
 	}
-	else
-	{
-		// ft_usleep(philo, 200);
-		return (0);
-	}
-	return (1);
 }
 
+	// if (ptr->name % 2 == 0)
+	// 	ft_usleep(philo, 100);
 void	*routine(void *philo)
 {
 	t_philo	*ptr;
 
 	ptr = philo;
-	if (ptr->name % 2 == 0)
-		usleep(100);
 	ptr->start_time = ft_gettime(philo);
-	while (ptr->data->alive != 0 && ptr->data->nrounds != 0)
+	while (ft_minicheck(ptr))
 	{
-		ft_thinking(ptr);
+		if (ft_isalive(ptr))
+			ft_thinking(ptr);
 		if (ft_isalive(ptr))
 			ft_eat(ptr);
 		if (ft_isalive(ptr))

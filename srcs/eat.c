@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:10:27 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/07/18 12:41:44 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/07/18 13:59:49 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	ft_eat(t_philo *philo)
 	{
 		if (ft_isalive(philo))
 		{
-			printf("%ld %d has taken a fork\n", ft_gettime(philo), philo->name);
-			printf("%ld %d has taken a fork\n", ft_gettime(philo), philo->name);
 			philo->time = ft_gettime(philo);
 			printf("%ld %d is eating\n", philo->time, philo->name);
 			ft_usleep(philo, philo->data->time_eat);

@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 21:54:03 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/07/18 12:40:57 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/07/18 14:01:12 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/time.h>
 
 # define INT_MAX 2147483647
+
 typedef struct s_data
 {
 	pthread_mutex_t	dying;
@@ -74,11 +75,9 @@ void	*routine(void *philo);
 void	ft_thinking(t_philo *philo);
 void	ft_eat(t_philo *philo);
 void	ft_sleep(t_philo *philo);
+int		ft_minicheck(t_philo *philo);
 int		ft_isalive(t_philo *philo);
 long	ft_gettime(t_philo *philo);
-
-int		ft_take_fork(t_philo *philo);
-//========spare function=========//
 int		take_fork(t_philo *philo);
 
 #endif
