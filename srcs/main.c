@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:30:01 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/07/12 17:56:44 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:29:27 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ int	main(int ac, char **av)
 	ft_joindata(philo, data);
 	ft_create(philo);
 	ptr = philo;
-	while (ptr)
+	while (i < philo->data->nphilo)
 	{
 		pthread_join(ptr->p, NULL);
 		ptr = ptr->next;
+		i++;
 	}
 	ft_free_all(philo);
 	return (0);

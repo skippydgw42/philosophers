@@ -6,7 +6,7 @@
 #    By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/27 12:32:20 by mdegraeu          #+#    #+#              #
-#    Updated: 2022/07/12 17:45:12 by mdegraeu         ###   ########.fr        #
+#    Updated: 2022/07/18 10:00:56 by mdegraeu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,8 @@ OBJS = \
 HEADER = $(addprefix $(PATH_TO_HEADER), $(HEADER_WITHOUT_PATH))
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
+# -fsanitize=thread
 RM = rm -rf
 
 GREEN = \033[0;92m

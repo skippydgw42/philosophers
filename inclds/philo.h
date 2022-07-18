@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 21:54:03 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/07/12 17:52:50 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/07/18 12:40:57 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_data
 {
 	pthread_mutex_t	dying;
+	pthread_mutex_t	sating;
 	int				nphilo;
 	int				alive;
 	long			time_eat;
@@ -35,7 +36,6 @@ typedef struct s_data
 typedef struct s_fork
 {
 	pthread_mutex_t	mutex;
-	int				state;
 }	t_fork;
 
 typedef struct s_philo

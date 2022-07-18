@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:58:25 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/07/12 17:39:30 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/07/18 12:35:40 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,16 @@ long	ft_gettime(t_philo *philo)
 	return (time - philo->start_time);
 }
 
-void	ft_end(t_philo *philo)
+int	ft_end(t_philo *philo)
 {
+	int	n;
+
+	n = 100;
+	if (philo->data->nphilo >= 150)
+		n = 200;
 	if (philo->finish_time > 0)
 	{
-		ft_usleep(philo, 100);
+		ft_usleep(philo, n);
 		pthread_mutex_destroy(&philo->data->dying);
 		printf("%ld %d is dead\n", philo->finish_time, philo->name);
 	}
@@ -37,9 +42,10 @@ void	ft_end(t_philo *philo)
 	}
 	else
 	{
-		ft_usleep(philo, 200);
-		exit (EXIT_SUCCESS);
+		// ft_usleep(philo, 200);
+		return (0);
 	}
+	return (1);
 }
 
 void	*routine(void *philo)
@@ -50,12 +56,12 @@ void	*routine(void *philo)
 	if (ptr->name % 2 == 0)
 		usleep(100);
 	ptr->start_time = ft_gettime(philo);
-	while (ptr->data->alive == 1 && ptr->data->nrounds != 0)
+	while (ptr->data->alive != 0 && ptr->data->nrounds != 0)
 	{
 		ft_thinking(ptr);
-		if (ptr->data->nrounds != 0 && ptr->data->alive == 1)
+		if (ft_isalive(ptr))
 			ft_eat(ptr);
-		if (ptr->data->nrounds != 0 && ptr->data->alive == 1)
+		if (ft_isalive(ptr))
 			ft_sleep(ptr);
 	}
 	usleep(100);

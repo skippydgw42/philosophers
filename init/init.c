@@ -6,7 +6,7 @@
 /*   By: mdegraeu <mdegraeu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:47:27 by mdegraeu          #+#    #+#             */
-/*   Updated: 2022/07/12 17:38:34 by mdegraeu         ###   ########.fr       */
+/*   Updated: 2022/07/18 12:41:14 by mdegraeu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_data	*ft_initdata(char **av)
 	else
 		data->nrounds = -1;
 	pthread_mutex_init(&data->dying, NULL);
+	pthread_mutex_init(&data->sating, NULL);
 	return (data);
 }
 
@@ -59,7 +60,6 @@ t_philo	*ft_initnew(int i)
 	if (!new->fork)
 		return (NULL);
 	new->name = i + 1;
-	new->fork->state = 1;
 	new->time = 0;
 	new->finish_time = 0;
 	new->start_time = 0;
